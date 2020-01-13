@@ -7,65 +7,34 @@ class Menu extends React.Component {
             name: "Megis",
             price: 1,
             inventory: 5,
-            count: 0,
             id: 0,
-            total: 0
         },{
             name: "Battery",
             price: 2,
             inventory: 7,
-            count: 0,
             id: 1,
-            total: 0
         }],
-        priceTotal: 0,
     }
 
     constructor(props) {
         super(props)
 
-        this.plusOne = this.plusOne.bind(this);
-        this.minusOne = this.minusOne.bind(this);
+        this.buy = this.buy.bind(this);
     }
 
-    plusOne = (x) => {
+    buy(x) {
+        console.log(x);
         const newList = this.state.itemList.map(item => {
             if (item.id === x) {
-                if (item.count < item.inventory) {
-                    item.count = item.count + 1
-                    item.total = item.count * item.price
+                if (item.inventory > 0) {
+                    item.inventory = item.inventory - 1
                 }
             }
             return item
-        })
-        let t = 0;
-        const totalPrice = newList.map(item => {
-            t = parseInt(t) + parseInt(item.total);
-            return t;
-        })
+        });
         this.setState({
-            itemList: newList,
-            priceTotal: totalPrice
+            itemList: newList
         })
-    }
-
-    minusOne = (x) => {
-        const newList = this.state.itemList.map(item => {
-            if (item.id === x) {
-                if (item.count > 0) {
-                    item.count = item.count - 1
-                }
-            }
-            return item
-        })
-        this.setState({
-            itemList: newList,
-        })
-        if (newList[x].count > 0 && this.state.priceTotal > 0) {
-            this.setState({
-                total: this.state.total - parseInt(newList[x].price)
-            })
-        };
     }
 
     render() {
@@ -73,8 +42,7 @@ class Menu extends React.Component {
             <div className="app">
             <h1 className="title">Limsamaatti</h1>
             <ItemList itemList={this.state.itemList}
-            plusOne={this.plusOne}
-            minusOne={this.minusOne}/>
+            buy={this.buy}/>
             <div className="user-menu"></div>
             <h3>Yhteensä {this.state.priceTotal}€</h3>
             </div>

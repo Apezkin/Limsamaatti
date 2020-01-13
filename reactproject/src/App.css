@@ -40,3 +40,9 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+.buy-button {
+  height: 50%;
+  margin-top: 5%;
+  text-align: center;
+}
