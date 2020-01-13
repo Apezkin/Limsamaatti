@@ -21,13 +21,33 @@
   padding: 2%;
 }
 
-.user-menu {
-  background: rgb(155, 0, 0);
+.right-menu {
   height: 50%;
   width: 40%;
   margin-bottom: 2%;
   display: inline-block;
+}
+
+.user-menu {
+  background: rgb(155, 0, 0);
+  height: 100%;
+  width: 100%;
+  margin-bottom: 2%;
   padding: 2%;
+}
+
+.feedback {
+  background: rgb(155, 0, 0);
+  min-height: 200px;
+  width: 100%;
+  margin-bottom: 2%;
+  padding: 2%;
+}
+
+.feedback-field {
+  background: lightgray;
+  width: 95%;
+  resize: none;
 }
 
 .item-bg {
@@ -45,4 +65,8 @@
   height: 50%;
   margin-top: 5%;
   text-align: center;
+}
+
+.logout-button {
+  float: right;
 }
