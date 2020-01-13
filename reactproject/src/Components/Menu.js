@@ -9,16 +9,14 @@ class Menu extends React.Component {
             inventory: 5,
             count: 0,
             id: 0,
-            total: 0
         },{
             name: "Battery",
             price: 2,
             inventory: 7,
             count: 0,
             id: 1,
-            total: 0
         }],
-        priceTotal: 0,
+        total: 0,
     }
 
     constructor(props) {
@@ -33,20 +31,18 @@ class Menu extends React.Component {
             if (item.id === x) {
                 if (item.count < item.inventory) {
                     item.count = item.count + 1
-                    item.total = item.count * item.price
                 }
             }
             return item
         })
-        let t = 0;
-        const totalPrice = newList.map(item => {
-            t = parseInt(t) + parseInt(item.total);
-            return t;
-        })
         this.setState({
             itemList: newList,
-            priceTotal: totalPrice
         })
+        if (this.state.total < newList[x].count * newList[x].price) {
+            this.setState({
+                total: this.state.total + newList[x].price
+            })
+        }
     }
 
     minusOne = (x) => {
@@ -61,7 +57,7 @@ class Menu extends React.Component {
         this.setState({
             itemList: newList,
         })
-        if (newList[x].count > 0 && this.state.priceTotal > 0) {
+        if (newList[x].count > 0 && this.state.total > 0) {
             this.setState({
                 total: this.state.total - parseInt(newList[x].price)
             })
@@ -76,7 +72,7 @@ class Menu extends React.Component {
             plusOne={this.plusOne}
             minusOne={this.minusOne}/>
             <div className="user-menu"></div>
-            <h3>Yhteensä {this.state.priceTotal}€</h3>
+            <h3>Yhteensä {this.state.total}€</h3>
             </div>
         );
     }
