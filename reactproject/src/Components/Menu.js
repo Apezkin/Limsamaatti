@@ -34,7 +34,6 @@ class Menu extends React.Component {
 
 
     buy(x) {
-        console.log(x);
         //First check if there isn't too much debt and there are still drinks
         if (this.state.itemList[x].inventory > 0 && this.state.saldo - this.state.itemList[x].price >= -20) {
             this.setState({

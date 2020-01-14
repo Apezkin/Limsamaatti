@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
         userType: req.body.userType
     })
     try{
-        const savedPost = await user.save(); //??
+        const savedPost = await user.save();
         res.json(savedPost);
     }catch(err){
         res.json({message: err});
