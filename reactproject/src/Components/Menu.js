@@ -5,22 +5,7 @@ import {Link} from "react-router-dom";
 
 class Menu extends React.Component {
     state = {
-        itemList: [{
-            name: "Megis",
-            price: 1,
-            inventory: 10,
-            id: 0,
-        },{
-            name: "Battery",
-            price: 2.5,
-            inventory: 10,
-            id: 1,
-        },{
-            name: "Cola",
-            price: 5,
-            inventory: 10,
-            id: 2
-        }],
+        itemList: [],
         saldo: Number.parseFloat(10.00).toFixed(2),
         user: "Teekkari Nönnönnöö"
     }
@@ -32,6 +17,34 @@ class Menu extends React.Component {
         this.addMoney = this.addMoney.bind(this);
     }
 
+    componentDidMount() {
+        this.getItems();
+    }
+
+    getItems = async () => {
+        let data, jsonData;
+        data = await fetch(
+            "http://localhost:3001/items"
+        );
+
+        jsonData = await data.json();
+        this.setState({itemList: jsonData});
+    }
+
+    buyItem = async (id, inv, itemPrice) => {
+        const bodyData = {
+            inventory: inv,
+            price: itemPrice
+        }
+
+        await fetch (
+            "http://localhost:3001/items/" + id, {
+                method: "PATCH",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify(bodyData)
+            }
+        )
+    }
 
     buy(x) {
         //First check if there isn't too much debt and there are still drinks
@@ -46,6 +59,7 @@ class Menu extends React.Component {
                 if (item.id === x) {
                     if (item.inventory > 0) {
                         item.inventory = item.inventory - 1
+                        this.buyItem(item._id, item.inventory, item.price)
                     }
                 }
                 return item

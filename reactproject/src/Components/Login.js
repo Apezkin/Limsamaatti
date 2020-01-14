@@ -14,12 +14,28 @@ function Login(props) {
     function handleSubmit(event) {
         event.preventDefault();
     }
-    function handleLogin() {
-        console.log("Click");
-    }
-    function handleNewUser() {
-        console.log("Click");
-    }
+    const handleLogin = (async event => {
+        event.preventDefault();
+        let data, jsonData;
+        const bodyData = {
+            username: username,
+            password: password
+        }
+        data = await fetch(
+            "http://localhost:3001/users", {
+                method: "GET",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify(bodyData)
+            }
+        );
+
+        if (data === "fail") {
+            console.log("fail");
+        } else {
+            jsonData = await data.json();
+            console.log(jsonData);
+        }
+    })
 
     return (
         <div className="Login">
@@ -29,6 +45,7 @@ function Login(props) {
                     <FormControl
                         autoFocus
                         type="username"
+                        name="username"
                         value={username}
                         onChange={e => setusername(e.target.value)}
                     />
@@ -39,6 +56,7 @@ function Login(props) {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         type="password"
+                        name="password"
                     />
                 </FormGroup>
                 <Link to="/menu">
@@ -48,8 +66,7 @@ function Login(props) {
                     </Button>
                 </Link>
                 <Link to="/register">
-                    <Button block bsSize="large" type="submit"
-                    onClick={handleNewUser}>
+                    <Button block bsSize="large" type="submit">
                         Register
                     </Button>
                 </Link>

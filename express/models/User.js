@@ -12,6 +12,10 @@ const UserSchema = mongoose.Schema({
     userType: { //Basic user, admin or company
         type: Number,
         required: true
+    },
+    userMoney: {
+        type: Number,
+        default: 0
     }
 });
 

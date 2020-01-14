@@ -12,6 +12,10 @@ const ItemSchema = mongoose.Schema({
     inventory: {
         type: Number,
         required: true
+    },
+    id: {
+        type: Number,
+        required: true
     }
 });
 
