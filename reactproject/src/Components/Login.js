@@ -19,7 +19,7 @@ function Login(props) {
         console.log("Click");
     }
     function handleNewUser() {
-        console.log("Click");
+        console.log("To Register view");
     }
 
     return (
