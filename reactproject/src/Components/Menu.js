@@ -32,6 +32,7 @@ class Menu extends React.Component {
         this.addMoney = this.addMoney.bind(this);
     }
 
+
     buy(x) {
         console.log(x);
         //First check if there isn't too much debt and there are still drinks
@@ -61,6 +62,7 @@ class Menu extends React.Component {
         this.setState({
             saldo: Number.parseFloat(parseFloat(this.state.saldo) + parseFloat(x)).toFixed(2)
         })
+
     }
 
     render() {
