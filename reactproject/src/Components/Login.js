@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-//import * as bt from "../Login.css"; 
-import * as bt from 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from "react-router-dom";
-
 function Login(props) {
     const [username, setusername] = useState("");
     const [password, setPassword] = useState("");
@@ -49,7 +47,7 @@ function Login(props) {
                     </Button>
                 </Link>
                 <Link to="/register">
-                    <Button className='mt-3' block bssize="large" type="submit"
+                    <Button className='mt-3 logout-button' block bssize="large" //type="submit"
                         onClick={handleNewUser}>
                         Register
                     </Button>
