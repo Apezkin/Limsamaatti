@@ -23,7 +23,7 @@ function Login(props) {
     }
 
     return (
-        <div className={bt["Login"]}>
+        <div className="Login">
             <form onSubmit={handleSubmit}>
                 <FormGroup controlId="username" bssize="large">
                     <FormLabel>Username</FormLabel>
@@ -49,7 +49,7 @@ function Login(props) {
                     </Button>
                 </Link>
                 <Link to="/register">
-                    <Button block bssize="large" type="submit"
+                    <Button className='mt-3' block bssize="large" type="submit"
                         onClick={handleNewUser}>
                         Register
                     </Button>
