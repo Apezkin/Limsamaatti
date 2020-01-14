@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "../Login.css";
+//import * as bt from "../Login.css"; 
+import * as bt from 'bootstrap/dist/css/bootstrap.css';
 import { Link } from "react-router-dom";
 
 function Login(props) {
@@ -22,7 +23,7 @@ function Login(props) {
     }
 
     return (
-        <div className="Login">
+        <div className={bt["Login"]}>
             <form onSubmit={handleSubmit}>
                 <FormGroup controlId="username" bssize="large">
                     <FormLabel>Username</FormLabel>
