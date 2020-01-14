@@ -12,7 +12,7 @@ class Menu extends React.Component {
             id: 0,
         },{
             name: "Battery",
-            price: 2,
+            price: 2.5,
             inventory: 10,
             id: 1,
         },{
@@ -21,7 +21,7 @@ class Menu extends React.Component {
             inventory: 10,
             id: 2
         }],
-        saldo: 10,
+        saldo: Number.parseFloat(10.00).toFixed(2),
         user: "Teekkari Nönnönnöö"
     }
 
@@ -34,16 +34,14 @@ class Menu extends React.Component {
 
 
     buy(x) {
-        console.log(x);
-        //Ensin testataan onko tarpeeksi velkavaraa ja onko inventaariossa juomia
+        //First check if there isn't too much debt and there are still drinks
         if (this.state.itemList[x].inventory > 0 && this.state.saldo - this.state.itemList[x].price >= -20) {
             this.setState({
-                //Vähennetään saldoa
-                saldo: this.state.saldo - this.state.itemList[x].price
+                //Take money
+                saldo: Number.parseFloat(this.state.saldo - this.state.itemList[x].price).toFixed(2)
             })
-            //Luodaan kopio itemLististä käymällä jokainen itemListin objecti läpi ja
-            //vähentämällä inventaariosta yksi, jos juoman ID vastaa klikatun
-            //juoman ostonappia
+            //Makes a copy of itemList by going through the list, returning each item,
+            //except substracting one from item's inventory if the ID matches
             const newList = this.state.itemList.map(item => {
                 if (item.id === x) {
                     if (item.inventory > 0) {
@@ -53,16 +51,15 @@ class Menu extends React.Component {
                 return item
             })
             this.setState({
-                //Päivitetään itemList kopion perusteella
+                //Update itemList with newLists items
                 itemList: newList
             })
         }
     }
 
     addMoney(x) {
-        console.log("money")
         this.setState({
-            saldo: this.state.saldo + x
+            saldo: Number.parseFloat(parseFloat(this.state.saldo) + parseFloat(x)).toFixed(2)
         })
 
     }
@@ -71,7 +68,7 @@ class Menu extends React.Component {
         return (
             <div className="app">
                 <Link to="/">
-                    <button className="logout-button">Kirjaudu ulos</button>
+                    <button className="logout-button">Logout</button>
                 </Link>
                 <h1 className="title">Limsamaatti</h1>
                 <div className="menu">
@@ -82,9 +79,9 @@ class Menu extends React.Component {
                         addMoney={this.addMoney}/>
                         <div className="feedback">
                             <div className="red-bg">
-                                <h3>Palaute</h3>
+                                <h3>Feedback</h3>
                                 <textarea className="feedback-field" maxLength="200" rows="5" cols="35"></textarea>
-                                <button>Tallenna</button>
+                                <button>Save</button>
                             </div>
                         </div>
                     </div>

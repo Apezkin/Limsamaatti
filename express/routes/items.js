@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
         inventory: req.body.inventory
     })
     try{
-        const savedItem = await item.save(); //??
+        const savedItem = await item.save();
         res.json(savedItem);
     }catch(err){
         res.json({message: err});

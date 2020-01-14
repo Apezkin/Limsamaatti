@@ -2,13 +2,14 @@
   background: white;
   min-height: 100vh;
   padding-left: 5%;
-  padding-top: 0.1%;
+  padding-top: 2%;
   padding-right: 5%;
 }
 
 .title {
   text-align: center;
   background: red;
+  border: 2px solid black;
   width: 100%;
   border-radius: 20px;
 }
@@ -20,6 +21,7 @@
 
 .list-bg {
   background: rgb(155, 0, 0);
+  border: 2px solid black;
   height: 100%;
   width: 40%;
   margin-bottom: 2%;
@@ -36,6 +38,7 @@
 
 .red-bg {
   background: red;
+  border: 2px solid black;
   padding-left: 5%;
   width: 90%;
   border-radius: 10px;
@@ -43,6 +46,7 @@
 
 .user-menu {
   background: rgb(155, 0, 0);
+  border: 2px solid black;
   height: 100%;
   width: 100%;
   margin-bottom: 5%;
@@ -59,6 +63,7 @@
 
 .feedback {
   background: rgb(155, 0, 0);
+  border: 2px solid black;
   height: 100%;
   width: 100%;
   margin-bottom: 2%;
@@ -77,6 +82,7 @@
 
 .item-bg {
   background: red;
+  border: 2px solid black;
   height: 120px;
   width: 97%;
   margin-bottom: 5%;
@@ -96,15 +102,14 @@
 
 .logout-button {
   float: right;
+  border-radius: 10px;
 }
 
 .saldo-button {
   height: 30px;
   margin-left: 10%;
   border-radius: 10px;
-}
-
-.saldo-input {
-  height: 20px;
-  width: 50px;
+  float: right;
+  margin-right: 10%;
+  margin-top: 3%;
 }
