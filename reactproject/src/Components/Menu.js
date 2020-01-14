@@ -32,6 +32,7 @@ class Menu extends React.Component {
         this.addMoney = this.addMoney.bind(this);
     }
 
+
     buy(x) {
         console.log(x);
         //Ensin testataan onko tarpeeksi velkavaraa ja onko inventaariossa juomia
@@ -63,6 +64,7 @@ class Menu extends React.Component {
         this.setState({
             saldo: this.state.saldo + x
         })
+
     }
 
     render() {
