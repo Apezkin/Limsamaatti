@@ -32,8 +32,8 @@ function Login(props) {
                         onChange={e => setusername(e.target.value)}
                     />
                 </FormGroup>
-                <FormGroup controlId="password" bssize="large">
-                    <FormLabel>Password</FormLabel>
+                <FormGroup controlId="password" bssize="large" //.styled__control-is-focused. 
+                    ><FormLabel>Password</FormLabel>
                     <FormControl
                         value={password}
                         onChange={e => setPassword(e.target.value)}
@@ -41,13 +41,13 @@ function Login(props) {
                     />
                 </FormGroup>
                 <Link to="/menu">
-                    <Button block bssize="large" disabled={!validateForm()} type="submit"
+                    <Button block bssize="large" disabled={!validateForm()} style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} // type="submit"
                         onClick={handleLogin}>
                         Login
                     </Button>
                 </Link>
                 <Link to="/register">
-                    <Button className='mt-3 logout-button' block bssize="large" //type="submit"
+                    <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} //" type="submit"
                         onClick={handleNewUser}>
                         Register
                     </Button>
