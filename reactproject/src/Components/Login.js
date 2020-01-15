@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "../Login.css";
 import {withRouter, Link} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.css';
 
 function Login(props) {
     const [username, setusername] = useState("");
@@ -43,7 +43,7 @@ function Login(props) {
         <div className="Login">
             <h1>{props.wow}</h1>
             <form onSubmit={handleSubmit}>
-                <FormGroup controlId="username" bsSize="large">
+                <FormGroup controlId="username" bssize="large">
                     <FormLabel>Username</FormLabel>
                     <FormControl
                         autoFocus
@@ -53,8 +53,8 @@ function Login(props) {
                         onChange={e => setusername(e.target.value)}
                     />
                 </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                    <FormLabel>Password</FormLabel>
+                <FormGroup controlId="password" bssize="large" //.styled__control-is-focused. 
+                    ><FormLabel>Password</FormLabel>
                     <FormControl
                         value={password}
                         onChange={e => setPassword(e.target.value)}
@@ -62,12 +62,17 @@ function Login(props) {
                         name="password"
                     />
                 </FormGroup>
-                <Button block bsSize="large" disabled={!validateForm()} type="submit"
-                onClick={handleLogin}>
-                    Login
-                </Button>
+
+                <Link to="/menu">
+                    <Button block bssize="large" disabled={!validateForm()} style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} // type="submit"
+                        onClick={handleLogin}>
+                        Login
+                    </Button>
+                </Link>
                 <Link to="/register">
-                    <Button block bsSize="large" type="submit">
+                    <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} //" type="submit"
+                        onClick={handleNewUser}>
+
                         Register
                     </Button>
                 </Link>

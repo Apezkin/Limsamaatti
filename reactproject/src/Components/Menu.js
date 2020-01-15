@@ -2,6 +2,7 @@ import React from 'react';
 import ItemList from "./ItemList"
 import UserInfo from "./UserInfo"
 import {Link} from "react-router-dom";
+import  'bootstrap/dist/css/bootstrap.css';
 
 class Menu extends React.Component {
     state = {
@@ -110,7 +111,7 @@ class Menu extends React.Component {
                 <Link to="/">
                     <button className="logout-button">Logout</button>
                 </Link>
-                <h1 className="title">Limsamaatti</h1>
+                <h1 className="mt-5 title">Limsamaatti</h1>
                 <div className="menu">
                     <ItemList itemList={this.state.itemList}
                     buy={this.buy}/>

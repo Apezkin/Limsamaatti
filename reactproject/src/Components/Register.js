@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../Login.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Register(props) {
     const [username, setusername] = useState("");
@@ -19,11 +19,14 @@ function Register(props) {
             console.log("Login success!");
         } else alert("Password is too short!")
     }
+    function handleBack() {
+        console.log("Back to login screen");
+    }
 
     return (
         <div className="Login">
             <form onSubmit={handleSubmit}>
-                <FormGroup controlId="username" bsSize="large">
+                <FormGroup controlId="username" bssize="large">
                     <FormLabel>Username</FormLabel>
                     <FormControl
                         autoFocus
@@ -32,7 +35,7 @@ function Register(props) {
                         onChange={e => setusername(e.target.value)}
                     />
                 </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
+                <FormGroup controlId="password" bssize="large">
                     <FormLabel>Password</FormLabel>
                     <FormControl
                         value={password}
@@ -40,7 +43,7 @@ function Register(props) {
                         type="password"
                     />
                 </FormGroup>
-                <FormGroup controlId="password2" bsSize="large">
+                <FormGroup controlId="password2" bssize="large">
                     <FormLabel>Password again</FormLabel>
                     <FormControl
                         value={password2}
@@ -49,9 +52,15 @@ function Register(props) {
                     />
                 </FormGroup>
                 <Link to="/">
-                    <Button block bsSize="large" disabled={!validateForm()} type="submit"
+                    <Button block bssize="large" disabled={!validateForm()} type="submit"
                         onClick={handleRegister}>
                         Register
+                    </Button>
+                </Link>
+                <Link to="/">
+                    <Button className='mt-3' block bssize="large" type="submit"
+                        onClick={handleBack}>
+                        Back to login
                     </Button>
                 </Link>
             </form>
