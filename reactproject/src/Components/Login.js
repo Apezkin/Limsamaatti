@@ -71,7 +71,8 @@ function Login(props) {
                 </Link>
                 <Link to="/register">
                     <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} //" type="submit"
-                        onClick={handleNewUser}>
+                        //onClick={handleNewUser}
+                        >
 
                         Register
                     </Button>
