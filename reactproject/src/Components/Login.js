@@ -1,0 +1,79 @@
+import React, { useState } from "react";
+import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import "../Login.css";
+import {withRouter, Link} from "react-router-dom";
+
+function Login(props) {
+    const [username, setusername] = useState("");
+    const [password, setPassword] = useState("");
+
+    function validateForm() {
+        return username.length > 0 && password.length > 0;
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+    }
+    const handleLogin = (async event => {
+        event.preventDefault();
+        let data, jsonData;
+        const bodyData = {
+            username: username,
+            password: password,
+            mess: "find"
+        }
+        data = await fetch(
+            "http://localhost:3001/users", {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify(bodyData)
+            }
+        );
+        jsonData = await data.json();
+
+        if (jsonData === "fail") {
+            console.log("fail");
+        } else {
+            props.setUser(jsonData);
+            props.history.push("/menu");
+        }
+    })
+
+    return (
+        <div className="Login">
+            <h1>{props.wow}</h1>
+            <form onSubmit={handleSubmit}>
+                <FormGroup controlId="username" bsSize="large">
+                    <FormLabel>Username</FormLabel>
+                    <FormControl
+                        autoFocus
+                        type="username"
+                        name="username"
+                        value={username}
+                        onChange={e => setusername(e.target.value)}
+                    />
+                </FormGroup>
+                <FormGroup controlId="password" bsSize="large">
+                    <FormLabel>Password</FormLabel>
+                    <FormControl
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        type="password"
+                        name="password"
+                    />
+                </FormGroup>
+                <Button block bsSize="large" disabled={!validateForm()} type="submit"
+                onClick={handleLogin}>
+                    Login
+                </Button>
+                <Link to="/register">
+                    <Button block bsSize="large" type="submit">
+                        Register
+                    </Button>
+                </Link>
+            </form>
+        </div>
+    );
+}
+
+export default withRouter(Login);
