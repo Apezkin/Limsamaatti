@@ -32,6 +32,7 @@ function Login(props) {
     function handleSubmit(event) {
         event.preventDefault();
     }
+<<<<<<< HEAD
     const handleLogin = (async event => {
         event.preventDefault();
         let data, jsonData;
@@ -56,6 +57,14 @@ function Login(props) {
             props.history.push("/menu");
         }
     })
+=======
+    function handleLogin() {
+        console.log("Click");
+    }
+    function handleNewUser() {
+        console.log("Click");
+    }
+>>>>>>> parent of 5e245f3... console text change
 
     return (
         <div className="Login">
