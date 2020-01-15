@@ -103,9 +103,6 @@
 .logout-button {
   float: right;
   border-radius: 10px;
-  background-color: red;
-  color: black;
-  font-size: x-large;
 }
 
 .saldo-button {

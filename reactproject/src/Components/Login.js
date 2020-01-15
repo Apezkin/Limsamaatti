@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+<<<<<<< HEAD
 import {withRouter, Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+=======
+//import * as bt from "../Login.css"; 
+import * as bt from 'bootstrap/dist/css/bootstrap.css';
+import { Link } from "react-router-dom";
+>>>>>>> parent of 257970e... logout styling
 
 function Login(props) {
     const [username, setusername] = useState("");
@@ -70,10 +76,15 @@ function Login(props) {
                     </Button>
                 </Link>
                 <Link to="/register">
+<<<<<<< HEAD
                     <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} //" type="submit"
                         //onClick={handleNewUser}
                         >
 
+=======
+                    <Button className='mt-3' block bssize="large" type="submit"
+                        onClick={handleNewUser}>
+>>>>>>> parent of 257970e... logout styling
                         Register
                     </Button>
                 </Link>
