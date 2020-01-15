@@ -6,12 +6,15 @@ import {Link} from "react-router-dom";
 class Menu extends React.Component {
     state = {
         itemList: [],
-        saldo: Number.parseFloat(10.00).toFixed(2),
-        user: "Teekkari Nönnönnöö"
+        money: 0
     }
 
     constructor(props) {
         super(props)
+
+        if(this.props.currentUser == null) {
+            window.location.href="/"
+        }
 
         this.buy = this.buy.bind(this);
         this.addMoney = this.addMoney.bind(this);
@@ -19,6 +22,13 @@ class Menu extends React.Component {
 
     componentDidMount() {
         this.getItems();
+        this.setMoney();
+    }
+
+    setMoney() {
+        this.setState({
+            money: parseFloat(this.props.currentUser.userMoney).toFixed(2)
+        })
     }
 
     getItems = async () => {
@@ -48,10 +58,10 @@ class Menu extends React.Component {
 
     buy(x) {
         //First check if there isn't too much debt and there are still drinks
-        if (this.state.itemList[x].inventory > 0 && this.state.saldo - this.state.itemList[x].price >= -20) {
+        if (this.state.itemList[x].inventory > 0 && this.state.money - this.state.itemList[x].price >= -20) {
             this.setState({
                 //Take money
-                saldo: Number.parseFloat(this.state.saldo - this.state.itemList[x].price).toFixed(2)
+                money: parseFloat(this.state.money - this.state.itemList[x].price).toFixed(2)
             })
             //Makes a copy of itemList by going through the list, returning each item,
             //except substracting one from item's inventory if the ID matches
@@ -59,7 +69,8 @@ class Menu extends React.Component {
                 if (item.id === x) {
                     if (item.inventory > 0) {
                         item.inventory = item.inventory - 1
-                        this.buyItem(item._id, item.inventory, item.price)
+                        this.buyItem(item._id, item.inventory, item.price);
+                        this.addMoneyToBackEnd(this.state.money - this.state.itemList[x].price);
                     }
                 }
                 return item
@@ -71,14 +82,29 @@ class Menu extends React.Component {
         }
     }
 
+    addMoneyToBackEnd = async (m) => {
+        const bodyData = {
+            userMoney: m
+        }
+        await fetch (
+            "http://localhost:3001/users/" + this.props.currentUser._id, {
+                method: "PATCH",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify(bodyData)
+            }
+        )
+    }
+
     addMoney(x) {
         this.setState({
-            saldo: Number.parseFloat(parseFloat(this.state.saldo) + parseFloat(x)).toFixed(2)
-        })
+            money: parseFloat(parseFloat(this.state.money) + parseFloat(x)).toFixed(2)
+        });
 
+        this.addMoneyToBackEnd(parseFloat(this.state.money) + parseFloat(x));
     }
 
     render() {
+
         return (
             <div className="app">
                 <Link to="/">
@@ -89,7 +115,7 @@ class Menu extends React.Component {
                     <ItemList itemList={this.state.itemList}
                     buy={this.buy}/>
                     <div className="right-menu">
-                        <UserInfo user={this.state.user} saldo={this.state.saldo}
+                        <UserInfo user={this.props.currentUser.username} saldo={this.state.money}
                         addMoney={this.addMoney}/>
                         <div className="feedback">
                             <div className="red-bg">

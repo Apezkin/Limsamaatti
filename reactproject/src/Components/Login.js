@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../Login.css";
-import {Link} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 
 function Login(props) {
     const [username, setusername] = useState("");
@@ -19,26 +19,29 @@ function Login(props) {
         let data, jsonData;
         const bodyData = {
             username: username,
-            password: password
+            password: password,
+            mess: "find"
         }
         data = await fetch(
             "http://localhost:3001/users", {
-                method: "GET",
+                method: "POST",
                 headers: {"Content-Type":"application/json"},
                 body: JSON.stringify(bodyData)
             }
         );
+        jsonData = await data.json();
 
-        if (data === "fail") {
+        if (jsonData === "fail") {
             console.log("fail");
         } else {
-            jsonData = await data.json();
-            console.log(jsonData);
+            props.setUser(jsonData);
+            props.history.push("/menu");
         }
     })
 
     return (
         <div className="Login">
+            <h1>{props.wow}</h1>
             <form onSubmit={handleSubmit}>
                 <FormGroup controlId="username" bsSize="large">
                     <FormLabel>Username</FormLabel>
@@ -59,12 +62,10 @@ function Login(props) {
                         name="password"
                     />
                 </FormGroup>
-                <Link to="/menu">
-                    <Button block bsSize="large" disabled={!validateForm()} type="submit"
-                    onClick={handleLogin}>
-                        Login
-                    </Button>
-                </Link>
+                <Button block bsSize="large" disabled={!validateForm()} type="submit"
+                onClick={handleLogin}>
+                    Login
+                </Button>
                 <Link to="/register">
                     <Button block bsSize="large" type="submit">
                         Register
@@ -75,4 +76,4 @@ function Login(props) {
     );
 }
 
-export default Login;
+export default withRouter(Login);
