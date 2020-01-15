@@ -14,9 +14,29 @@ function Register(props) {
     function handleSubmit(event) {
         event.preventDefault();
     }
+
+    const register = async () => {
+        const bodyData = {
+            username: username,
+            password: password,
+            mess: "new"
+        }
+
+        await fetch(
+            "http://localhost:3001/users", {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify(bodyData)
+            }
+        );
+    }
+
     function handleRegister() {
         if (password.length > 4) {
             console.log("Login success!");
+
+            register();
+
         } else alert("Password is too short!")
     }
     function handleBack() {
