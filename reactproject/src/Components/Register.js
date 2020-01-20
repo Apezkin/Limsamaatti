@@ -3,6 +3,7 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../Login.css";
 import { Link } from "react-router-dom";
 
+
 function Register(props) {
     const [username, setusername] = useState("");
     const [password, setPassword] = useState("");
@@ -30,20 +31,41 @@ function Register(props) {
         }
         );
     }
-    function checkuser() {
-        return true;
-    }
+    function checkuser() { return checkuser2(); }
 
     function handleRegister() {
         if (password.length > 4) {
-            console.log("Login success!");
+            // console.log("Login success!");
             register();
-            if (checkuser) { alert("Registeration successfull!") } else { alert("Registeration fail") }
+            if (checkuser()) {console.log("true"); alert("Registeration successfull!") } else { alert("Registeration fail") }
         } else alert("Password is too short!")
     }
     function handleBack() {
         console.log("Back to login screen");
     }
+    const checkuser2 = (async event => {
+        event.preventDefault();
+        let data, jsonData;
+        const bodyData = {
+            username: username,
+            mess: "find"
+        }
+        data = await fetch(
+            "http://localhost:3001/users", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
+        );
+        jsonData = await data.json();
+        // console.log(jsonData);
+        if (jsonData === "fail") {
+            return false;
+        } else {
+            console.log(jsonData);
+            return true;
+        }
+    })
 
     return (
         <div className="Login">
