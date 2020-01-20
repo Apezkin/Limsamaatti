@@ -104,13 +104,7 @@ class Menu extends React.Component {
 
         this.addMoneyToBackEnd(parseFloat(this.state.money) + parseFloat(x));
     }
-    clearContents(element) {
-        this.textarea.value = 'very';
-    }
-    resetbox() {
-        var ta = document.getElementById('myInput');
-        ta.value = ta.defaultValue;
-    }
+
 
     render() {
 
@@ -129,9 +123,8 @@ class Menu extends React.Component {
                         <div className="feedback">
                             <div className="red-bg">
                                 <h3>Feedback</h3>
-                                <textarea className="feedback-field" maxLength="200" rows="5" cols="35" id='myInput'></textarea>
-                                <button onclick="document.getElementById('myInput').value = 'hide'">Save</button>
-                                <button onclick={this.resetbox}>Save2</button>
+                                <textarea className="feedback-field" maxLength="200" rows="5" cols="35" id="myInput"></textarea>
+                                <button onClick="document.getElementById('myInput').value = 'hide'">Save</button>
                             </div>
                         </div>
                     </div>
