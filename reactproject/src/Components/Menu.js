@@ -1,8 +1,9 @@
 import React from 'react';
 import ItemList from "./ItemList"
 import UserInfo from "./UserInfo"
-import {Link} from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from "react-router-dom";
+//import Feedback from 'react-bootstrap/Feedback';
+//import 'bootstrap/dist/css/bootstrap.css';
 
 class Menu extends React.Component {
     state = {
@@ -10,13 +11,13 @@ class Menu extends React.Component {
         money: 0
     }
 
+
     constructor(props) {
         super(props)
 
-        if(this.props.currentUser == null) {
-            window.location.href="/"
+        if (this.props.currentUser == null) {
+            window.location.href = "/"
         }
-
         this.buy = this.buy.bind(this);
         this.addMoney = this.addMoney.bind(this);
     }
@@ -39,7 +40,7 @@ class Menu extends React.Component {
         );
 
         jsonData = await data.json();
-        this.setState({itemList: jsonData});
+        this.setState({ itemList: jsonData });
     }
 
     buyItem = async (id, inv, itemPrice) => {
@@ -48,12 +49,12 @@ class Menu extends React.Component {
             price: itemPrice
         }
 
-        await fetch (
+        await fetch(
             "http://localhost:3001/items/" + id, {
-                method: "PATCH",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(bodyData)
-            }
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
         )
     }
 
@@ -87,12 +88,12 @@ class Menu extends React.Component {
         const bodyData = {
             userMoney: m
         }
-        await fetch (
+        await fetch(
             "http://localhost:3001/users/" + this.props.currentUser._id, {
-                method: "PATCH",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(bodyData)
-            }
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
         )
     }
 
@@ -103,26 +104,34 @@ class Menu extends React.Component {
 
         this.addMoneyToBackEnd(parseFloat(this.state.money) + parseFloat(x));
     }
+    clearContents(element) {
+        this.textarea.value = 'very';
+    }
+    resetbox() {
+        var ta = document.getElementById('myInput');
+        ta.value = ta.defaultValue;
+    }
 
     render() {
 
         return (
             <div className="app">
                 <Link to="/">
-                    <button className="logout-button">Logout</button>
+                    <button className="logout-button" style={{ backgroundColor: 'red', color: 'black' }}>Logout</button>
                 </Link>
-                <h1 className="title">Limsamaatti</h1>
+                <h1 className="mt-5 title">Limsamaatti</h1>
                 <div className="menu">
                     <ItemList itemList={this.state.itemList}
-                    buy={this.buy}/>
+                        buy={this.buy} />
                     <div className="right-menu">
                         <UserInfo user={this.props.currentUser.username} saldo={this.state.money}
-                        addMoney={this.addMoney}/>
+                            addMoney={this.addMoney} />
                         <div className="feedback">
                             <div className="red-bg">
                                 <h3>Feedback</h3>
-                                <textarea className="feedback-field" maxLength="200" rows="5" cols="35"></textarea>
-                                <button>Save</button>
+                                <textarea className="feedback-field" maxLength="200" rows="5" cols="35" id='myInput'></textarea>
+                                <button onclick="document.getElementById('myInput').value = 'hide'">Save</button>
+                                <button onclick={this.resetbox}>Save2</button>
                             </div>
                         </div>
                     </div>

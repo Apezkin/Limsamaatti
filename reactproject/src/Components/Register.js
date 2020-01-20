@@ -24,19 +24,21 @@ function Register(props) {
 
         await fetch(
             "http://localhost:3001/users", {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(bodyData)
-            }
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
         );
+    }
+    function checkuser() {
+        return true;
     }
 
     function handleRegister() {
         if (password.length > 4) {
             console.log("Login success!");
-
             register();
-
+            if (checkuser) { alert("Registeration successfull!") } else { alert("Registeration fail") }
         } else alert("Password is too short!")
     }
     function handleBack() {
@@ -72,13 +74,13 @@ function Register(props) {
                     />
                 </FormGroup>
                 <Link to="/">
-                    <Button block bssize="large" disabled={!validateForm()} type="submit"
+                    <Button block bssize="large" disabled={!validateForm()} style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }}
                         onClick={handleRegister}>
                         Register
                     </Button>
                 </Link>
                 <Link to="/">
-                    <Button className='mt-3' block bssize="large" type="submit"
+                    <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }}
                         onClick={handleBack}>
                         Back to login
                     </Button>

@@ -103,6 +103,7 @@
 .logout-button {
   float: right;
   border-radius: 10px;
+  font-size: x-large;
 }
 
 .saldo-button {
