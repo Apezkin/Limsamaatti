@@ -1,10 +1,10 @@
 import React from 'react';
-import ItemList from "./ItemList"
+import AdminItemList from "./AdminItemList"
 import UserInfo from "./UserInfo"
 import {Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 
-class Menu extends React.Component {
+class AdminView extends React.Component {
     state = {
         itemList: [],
         money: 0
@@ -17,8 +17,7 @@ class Menu extends React.Component {
             window.location.href="/"
         }
 
-        this.saveFeedback = this.saveFeedback.bind(this);
-        this.buy = this.buy.bind(this);
+        this.saveItem = this.saveItem.bind(this);
         this.addMoney = this.addMoney.bind(this);
     }
 
@@ -58,30 +57,23 @@ class Menu extends React.Component {
         )
     }
 
-    buy(x) {
-        //First check if there isn't too much debt and there are still drinks
-        if (this.state.itemList[x].inventory > 0 && this.state.money - this.state.itemList[x].price >= -20) {
-            this.setState({
-                //Take money
-                money: parseFloat(this.state.money - this.state.itemList[x].price).toFixed(2)
-            })
-            //Makes a copy of itemList by going through the list, returning each item,
-            //except substracting one from item's inventory if the ID matches
-            const newList = this.state.itemList.map(item => {
-                if (item.id === x) {
-                    if (item.inventory > 0) {
-                        item.inventory = item.inventory - 1
-                        this.buyItem(item._id, item.inventory, item.price);
-                        this.addMoneyToBackEnd(this.state.money - this.state.itemList[x].price);
-                    }
-                }
-                return item
-            })
-            this.setState({
-                //Update itemList with newLists items
-                itemList: newList
-            })
-        }
+    saveItem(itemId, itemPrice, itemInv) {
+    
+        //Makes a copy of itemList by going through the list, returning each item,
+        //except adding one to item's inventory if the ID matches
+        const newList = this.state.itemList.map(item => {
+            if (item.id === itemId) {
+                item.inventory = itemInv
+                item.price = itemPrice
+                this.buyItem(item._id, item.inventory, item.price);
+            }
+            return item
+        })
+        this.setState({
+            //Update itemList with newLists items
+            itemList: newList
+        })
+    
     }
 
     addMoneyToBackEnd = async (m) => {
@@ -105,12 +97,6 @@ class Menu extends React.Component {
         this.addMoneyToBackEnd(parseFloat(this.state.money) + parseFloat(x));
     }
 
-    saveFeedback(event) {
-        event.preventDefault();
-
-        event.target.feedbackField.value = ""
-    }
-
     render() {
 
         return (
@@ -118,22 +104,13 @@ class Menu extends React.Component {
                 <Link to="/">
                     <button className="logout-button">Logout</button>
                 </Link>
-                <h1 className="mt-5 title">Limsamaatti</h1>
+                <h1 className="mt-5 title">Limsamaatti Admin</h1>
                 <div className="menu">
-                    <ItemList itemList={this.state.itemList}
-                    buy={this.buy}/>
+                    <AdminItemList itemList={this.state.itemList}
+                    saveItem={this.saveItem}/>
                     <div className="right-menu">
                         <UserInfo user={this.props.currentUser.username} saldo={this.state.money}
                         addMoney={this.addMoney}/>
-                        <div className="feedback">
-                            <div className="red-bg">
-                                <form onSubmit={this.saveFeedback}>
-                                    <h3>Feedback</h3>
-                                    <textarea className="feedback-field" name="feedbackField" maxLength="200" rows="5" cols="35"></textarea>
-                                    <button type="submit">Save</button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -141,4 +118,4 @@ class Menu extends React.Component {
     }
 }
 
-export default Menu;
+export default AdminView;

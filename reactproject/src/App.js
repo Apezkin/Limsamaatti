@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
-import Menu from "./Components/Menu"
-import Login from "./Components/Login"
-import Register from "./Components/Register"
+import Menu from "./Components/Menu";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import AdminView from "./Components/AdminView";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 
 class App extends React.Component {
   state = {
     currentUser: null,
-    users: []
+    users: [],
+    admin: 1 //1 == no, 2 == yes, comes from currentUser.userType
   }
 
   constructor(props) {
@@ -20,7 +22,8 @@ class App extends React.Component {
 
   setUser(user) {
     this.setState({
-      currentUser: user
+      currentUser: user,
+      admin: user.userType
     })
   }
 
@@ -32,10 +35,16 @@ class App extends React.Component {
             path="/" exact 
             render={(props) => <Login {...props} setUser={this.setUser}/>}
             />
+            {this.state.admin === 2 ? 
+            <Route
+            path="/menu"
+            render={(props) => <AdminView {...props} currentUser={this.state.currentUser}/>}
+            />
+            :
             <Route 
             path="/menu"
             render={(props) => <Menu {...props} currentUser={this.state.currentUser}/>}
-            />
+            />}
             <Route path="/register" component={Register}/>
           </Switch>
         </Router>
