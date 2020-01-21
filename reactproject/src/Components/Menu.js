@@ -2,6 +2,8 @@ import React from 'react';
 import ItemList from "./ItemList"
 import UserInfo from "./UserInfo"
 import { Link } from "react-router-dom";
+// import logo from '../Components/Pictures/cluster_logo.svg';
+
 //import Feedback from 'react-bootstrap/Feedback';
 //import 'bootstrap/dist/css/bootstrap.css';
 

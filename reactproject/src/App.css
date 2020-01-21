@@ -1,5 +1,9 @@
 .app {
   background: white;
+  background-image: url('./Components/Pictures/cluster_logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
   min-height: 100vh;
   padding-left: 5%;
   padding-top: 2%;
