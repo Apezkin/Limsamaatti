@@ -1,0 +1,33 @@
+import React, { Component } from "react";
+import { Modal, Button, Row, Col, Form } from "react-bootstrap";
+
+export class AddDepModal extends Component {
+  constructo(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Confirmation
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">to add Delete and accept buttons</div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={props.onHide}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+}
