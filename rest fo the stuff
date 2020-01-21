@@ -1,0 +1,56 @@
+.modal {
+  width: 500px;
+  height: 100px;
+  background-color: white;
+  border-radius: 5px;
+  border-style: initial;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  z-index: 4000;
+  padding: 10px;
+  margin-left: -150px;
+  margin-top: -150px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: centre;
+  vertical-align: middle;
+}
+
+import { AddDepModal } from "./AddDepModal";
+//bying tells the product that is sent to modal
+  addModalShow: false,
+    addModalClose: true,
+    buying: "",
+    isPopUp: "Off",
+    noPopUp: true,
+    
+    
+    
+      changeNoPop = () => {
+    if (this.state.noPopUp == true) {
+      this.setState({ noPopUp: false });
+      this.setState({ isPopUp: "On" });
+    } else {
+      this.setState({ noPopUp: true });
+      this.setState({ isPopUp: "Off" });
+    }
+  };
+  
+  
+  
+  <div>
+          <ButtonToolbar>
+            <AddDepModal
+              show={this.state.addModalShow}
+              onHide={this.state.addModalClose}
+              finishit={this.finishit}
+              buying={this.state.buying}
+            />
+          </ButtonToolbar>
+        </div>
+        
+        
+        
