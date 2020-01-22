@@ -4,11 +4,11 @@ const User = require("../models/User");
 
 
 router.get("/", async (req, res) => {
-    try{
+    try {
         const users = await User.find();
         res.json(users);
-    }catch(err){
-        res.json({message: err});
+    } catch (err) {
+        res.json({ message: err });
     }
 });
 
@@ -22,43 +22,43 @@ router.post("/", async (req, res) => {
     if (mess === "find") {
         try {
             const username = req.body.username;
-            const user = await User.findOne({username});
+            const user = await User.findOne({ username });
             if (req.body.username === user.username && req.body.password === user.password) {
                 res.json(user);
             } else {
                 res.json("fail");
             }
-        } catch(err) {
+        } catch (err) {
             res.json("fail");
         }
     } else {
-        try{
+        try {
             const savedPost = await user.save();
             res.json(savedPost);
-        }catch(err){
-            res.json({message: err});
+        } catch (err) {
+            res.json({ message: err });
         }
     }
 });
 
 router.delete("/:userid", async (req, res) => {
-    try{
-    const removedUser = await User.remove({_id: req.params.userid});
-    res.json(removedUser);
-    }catch(err){
-        res.json({message: err});
+    try {
+        const removedUser = await User.remove({ _id: req.params.userid });
+        res.json(removedUser);
+    } catch (err) {
+        res.json({ message: err });
     }
 });
 
 router.patch("/:userid", async (req, res) => {
-    try{
+    try {
         const updatedUser = await User.updateOne(
-            {_id: req.params.userid},
-            {$set: {userMoney: req.body.userMoney}},
+            { _id: req.params.userid },
+            { $set: { userMoney: req.body.userMoney } },
         );
         res.json(updatedUser);
-    }catch(err){
-        res.json({message: err});
+    } catch (err) {
+        res.json({ message: err });
     }
 });
 

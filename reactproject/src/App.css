@@ -1,5 +1,9 @@
 .app {
   background: white;
+  background-image: url('./Components/Pictures/cluster_logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
   min-height: 100vh;
   padding-left: 5%;
   padding-top: 2%;
@@ -103,8 +107,6 @@
 .logout-button {
   float: right;
   border-radius: 10px;
-  background-color: red;
-  color: black;
   font-size: x-large;
 }
 
@@ -115,6 +117,7 @@
   margin-right: 10%;
   margin-top: 3%;
 }
+
 
 .item-newinfo {
   width: 50px;

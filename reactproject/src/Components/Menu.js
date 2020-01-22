@@ -18,13 +18,13 @@ class Menu extends React.Component {
         noPopUp: true,
     }
 
+
     constructor(props) {
         super(props)
 
-        if(this.props.currentUser == null) {
-            window.location.href="/"
+        if (this.props.currentUser == null) {
+            window.location.href = "/"
         }
-
         this.saveFeedback = this.saveFeedback.bind(this);
         this.buy = this.buy.bind(this);
         this.buyButton = this.buyButton.bind(this);
@@ -60,7 +60,7 @@ class Menu extends React.Component {
         );
 
         jsonData = await data.json();
-        this.setState({itemList: jsonData});
+        this.setState({ itemList: jsonData });
     }
 
     buyItem = async (id, inv, itemPrice) => {
@@ -69,12 +69,12 @@ class Menu extends React.Component {
             price: itemPrice
         }
 
-        await fetch (
+        await fetch(
             "http://localhost:3001/items/" + id, {
-                method: "PATCH",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(bodyData)
-            }
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
         )
     }
 
@@ -122,12 +122,12 @@ class Menu extends React.Component {
         const bodyData = {
             userMoney: moneys
         }
-        await fetch (
+        await fetch(
             "http://localhost:3001/users/" + this.props.currentUser._id, {
-                method: "PATCH",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(bodyData)
-            }
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
         )
     }
 
@@ -150,7 +150,7 @@ class Menu extends React.Component {
         return (
             <div className="app">
                 <Link to="/">
-                    <button className="logout-button">Logout</button>
+                    <button className="logout-button" style={{ backgroundColor: 'red', color: 'black' }}>Logout</button>
                 </Link>
                 <h1 className="mt-5 title">Limsamaatti</h1>
                 <div className="menu">
@@ -165,10 +165,10 @@ class Menu extends React.Component {
                     </ButtonToolbar>
                 </div>
                     <ItemList itemList={this.state.itemList}
-                    buy={this.buy}/>
+                        buy={this.buy} />
                     <div className="right-menu">
                         <UserInfo user={this.props.currentUser.username} saldo={this.state.money}
-                        addMoney={this.addMoney}/>
+                            addMoney={this.addMoney} />
                         <div className="feedback">
                             <div className="red-bg">
                                 <form onSubmit={this.saveFeedback}>

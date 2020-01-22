@@ -15,19 +15,19 @@ app.use("/users", usersRoute);
 app.use("/items", itemsRoute);
 
 app.get("/", (req, res) => {
-    res.send("Home");
+    res.send("Database home");
 });
 
 var db = 'mongodb://localhost:27017';
 mongoose.connect(db,
-{ useNewUrlParser: true }, () =>
-    function(err) {
+    { useNewUrlParser: true }, () =>
+    function (err) {
         if (err) {
-        console.log("Unable to connect to Mongo.");
-        process.exit(1);
+            console.log("Unable to connect to Mongo.");
+            process.exit(1);
         }
     },
     console.log("Connected to db")
-  );
+);
 
-  app.listen(3001);
+app.listen(3001);
