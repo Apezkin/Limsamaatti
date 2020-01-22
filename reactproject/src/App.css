@@ -108,6 +108,8 @@
   float: right;
   border-radius: 10px;
   font-size: x-large;
+  background-color: red;
+  color: black;
 }
 
 .saldo-button {
