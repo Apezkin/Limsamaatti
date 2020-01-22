@@ -3,6 +3,7 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "../Login.css";
 import { Link } from "react-router-dom";
 
+
 function Register(props) {
     const [username, setusername] = useState("");
     const [password, setPassword] = useState("");
@@ -24,24 +25,47 @@ function Register(props) {
 
         await fetch(
             "http://localhost:3001/users", {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(bodyData)
-            }
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
         );
     }
+    function checkuser() { return checkuser2(); }
 
     function handleRegister() {
         if (password.length > 4) {
-            console.log("Login success!");
-
+            // console.log("Login success!");
             register();
-
+            if (checkuser()) {console.log("true"); alert("Registeration successfull!") } else { alert("Registeration fail") }
         } else alert("Password is too short!")
     }
     function handleBack() {
         console.log("Back to login screen");
     }
+    const checkuser2 = (async event => {
+        event.preventDefault();
+        let data, jsonData;
+        const bodyData = {
+            username: username,
+            mess: "find"
+        }
+        data = await fetch(
+            "http://localhost:3001/users", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
+        );
+        jsonData = await data.json();
+        // console.log(jsonData);
+        if (jsonData === "fail") {
+            return false;
+        } else {
+            console.log(jsonData);
+            return true;
+        }
+    })
 
     return (
         <div className="Login">
@@ -72,13 +96,13 @@ function Register(props) {
                     />
                 </FormGroup>
                 <Link to="/">
-                    <Button block bssize="large" disabled={!validateForm()} type="submit"
+                    <Button block bssize="large" disabled={!validateForm()} style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }}
                         onClick={handleRegister}>
                         Register
                     </Button>
                 </Link>
                 <Link to="/">
-                    <Button className='mt-3' block bssize="large" type="submit"
+                    <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }}
                         onClick={handleBack}>
                         Back to login
                     </Button>

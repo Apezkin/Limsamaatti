@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import {withRouter, Link} from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+import logo from '../Components/Pictures/cluster_logo.svg';
 
 function Login(props) {
     const [username, setusername] = useState("");
@@ -24,13 +25,13 @@ function Login(props) {
         }
         data = await fetch(
             "http://localhost:3001/users", {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify(bodyData)
-            }
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bodyData)
+        }
         );
         jsonData = await data.json();
-
+        console.log(jsonData);
         if (jsonData === "fail") {
             console.log("fail");
         } else {
@@ -38,6 +39,7 @@ function Login(props) {
             props.history.push("/menu");
         }
     })
+
 
     return (
         <div className="Login">
@@ -54,7 +56,7 @@ function Login(props) {
                     />
                 </FormGroup>
                 <FormGroup controlId="password" bssize="large" //.styled__control-is-focused. 
-                    ><FormLabel>Password</FormLabel>
+                ><FormLabel>Password</FormLabel>
                     <FormControl
                         value={password}
                         onChange={e => setPassword(e.target.value)}
@@ -71,11 +73,16 @@ function Login(props) {
                 </Link>
                 <Link to="/register">
                     <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} //" type="submit"
-                        >
+                    //onClick={handleNewUser}
+                    >
                         Register
                     </Button>
                 </Link>
+                <div>
+                    <img src={logo} className="mt-4 App-logo" alt="logo" /*styles={{ position: 'absolute', right: '20%' }}*/ />
+                </div>
             </form>
+
         </div>
     );
 }
