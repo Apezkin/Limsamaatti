@@ -160,3 +160,17 @@
   text-align: center;
   vertical-align: middle;
 }
+
+.meidan_logo {
+  position: 'absolute';
+  right: '50%';
+  margin-top: 10%;
+
+}
+.login_header {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  font-size: 300%;
+
+}
