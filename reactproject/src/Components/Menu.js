@@ -79,7 +79,6 @@ class Menu extends React.Component {
     }
 
     buy = item => {
-        console.log(item.name, item.id)
         this.setState({ buying: item.name })
         this.setState({currentBuyingId: item.id})
         this.state.addModalClose = () => this.setState({ addModalShow: false });
