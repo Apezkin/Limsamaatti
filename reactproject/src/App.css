@@ -102,22 +102,36 @@
   margin-top: 5%;
   text-align: center;
   border-radius: 10px;
+  border-width: thick;
+  font-weight: bold;
+  font-size: 120%;
+  background-color: rgb(255, 30, 30);
+
+
 }
 
 .logout-button {
   float: right;
   border-radius: 10px;
   font-size: x-large;
-  background-color: red;
+  background-color: rgb(255, 30, 30);
+  font-weight: 500;
   color: black;
+  border-width: thick;
 }
 
 .saldo-button {
-  height: 30px;
+  height: 40px;
   border-radius: 10px;
+  border-width: thick;
   float: right;
-  margin-right: 10%;
-  margin-top: 3%;
+  margin-left: 12%;
+  margin-right: 8%;
+  margin-top: 0%;
+  margin-bottom: 6%;
+  font-weight: bold;
+  font-size: 120%;
+  background-color: rgb(255, 30, 30);
 }
 
 
