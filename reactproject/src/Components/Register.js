@@ -42,7 +42,6 @@ function Register(props) {
     function handleBack() {
         console.log("Back to login screen");
     }
-    
 
     return (
         <div className="Login">

@@ -1,7 +1,7 @@
 .app {
   background: white;
-  background-image: url('./Components/Pictures/cluster_logo.svg');
-  background-size: contain;
+  background-image: url('./Components/Pictures/cluster_logo7.png');
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: 50%;
   min-height: 100vh;
@@ -108,6 +108,8 @@
   float: right;
   border-radius: 10px;
   font-size: x-large;
+  background-color: red;
+  color: black;
 }
 
 .saldo-button {

@@ -66,13 +66,13 @@ function Login(props) {
                 </FormGroup>
 
                 <Link to="/menu">
-                    <Button block bssize="large" disabled={!validateForm()} style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} type="submit" // type="submit"
+                    <Button block bssize="large" disabled={!validateForm()} style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} type="submit"
                         onClick={handleLogin}>
                         Login
                     </Button>
                 </Link>
                 <Link to="/register">
-                    <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} //" type="submit"
+                    <Button className='mt-3' block bssize="large" style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} type="submit"
                     //onClick={handleNewUser}
                     >
                         Register
