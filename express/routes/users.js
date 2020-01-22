@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     const user = new User({
         username: req.body.username,
         password: req.body.password,
-        userType: req.body.userType
+        userType: 1
     })
     const mess = req.body.mess;
     if (mess === "find") {

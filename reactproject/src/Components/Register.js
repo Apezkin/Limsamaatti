@@ -31,7 +31,6 @@ function Register(props) {
         }
         );
     }
-    // function checkuser() { return checkuser2(); }
 
     function handleRegister() {
         if (password.length > 4) {
@@ -43,29 +42,6 @@ function Register(props) {
     function handleBack() {
         console.log("Back to login screen");
     }
-    // const checkuser2 = (async event => {
-    //     event.preventDefault();
-    //     let data, jsonData;
-    //     const bodyData = {
-    //         username: username,
-    //         mess: "find"
-    //     }
-    //     data = await fetch(
-    //         "http://localhost:3001/users", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(bodyData)
-    //     }
-    //     );
-    //     jsonData = await data.json();
-    //     // console.log(jsonData);
-    //     if (jsonData === "fail") {
-    //         return false;
-    //     } else {
-    //         console.log(jsonData);
-    //         return true;
-    //     }
-    // })
 
     return (
         <div className="Login">
