@@ -5,7 +5,7 @@ function Item(props) {
 
     return(
         <div className="item-bg">
-            <h4>{props.name}</h4>
+            <h2>{props.name}</h2>
             <div>
                 <h4>Price</h4>
                 <h4 className="title">{props.price}€</h4>

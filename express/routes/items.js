@@ -40,8 +40,7 @@ router.patch("/:itemid", async (req, res) => {
     try{
         const updatedItem = await Item.updateOne(
             {_id: req.params.itemid},
-            {$set: {inventory: req.body.inventory}},
-            {$set: {price: req.body.price}}
+            {$set: {inventory: req.body.inventory, price: req.body.price}}
         );
         res.json(updatedItem);
     }catch(err){

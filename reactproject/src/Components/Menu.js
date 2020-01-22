@@ -20,6 +20,7 @@ class Menu extends React.Component {
         if (this.props.currentUser == null) {
             window.location.href = "/"
         }
+        this.saveFeedback = this.saveFeedback.bind(this);
         this.buy = this.buy.bind(this);
         this.addMoney = this.addMoney.bind(this);
     }
@@ -107,6 +108,11 @@ class Menu extends React.Component {
         this.addMoneyToBackEnd(parseFloat(this.state.money) + parseFloat(x));
     }
 
+    saveFeedback(event) {
+        event.preventDefault();
+
+        event.target.feedbackField.value = ""
+    }
 
     render() {
 
@@ -124,9 +130,11 @@ class Menu extends React.Component {
                             addMoney={this.addMoney} />
                         <div className="feedback">
                             <div className="red-bg">
-                                <h3>Feedback</h3>
-                                <textarea className="feedback-field" maxLength="200" rows="5" cols="35" id="myInput"></textarea>
-                                <button onClick="document.getElementById('myInput').value = 'hide'">Save</button>
+                                <form onSubmit={this.saveFeedback}>
+                                    <h3>Feedback</h3>
+                                    <textarea className="feedback-field" name="feedbackField" maxLength="200" rows="5" cols="35"></textarea>
+                                    <button type="submit">Save</button>
+                                </form>
                             </div>
                         </div>
                     </div>

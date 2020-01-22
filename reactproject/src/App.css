@@ -27,7 +27,7 @@
   background: rgb(155, 0, 0);
   border: 2px solid black;
   height: 100%;
-  width: 40%;
+  width: 50%;
   margin-bottom: 2%;
   margin-right: 13%;
   padding: 2%;
@@ -119,16 +119,11 @@
   margin-top: 3%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+
+.item-newinfo {
+  width: 50px;
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.center {
+  text-align: center;
 }
