@@ -3,11 +3,19 @@ import ItemList from "./ItemList"
 import UserInfo from "./UserInfo"
 import {Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+import AddDepModal from "./AddDepModal";
+import { ButtonToolbar } from "react-bootstrap"
 
 class Menu extends React.Component {
     state = {
         itemList: [],
-        money: 0
+        money: 0,
+        addModalShow: false,
+        addModalClose: true,
+        buying: "",
+        currentBuyingId: "",
+        isPopUp: "Off",
+        noPopUp: true,
     }
 
     constructor(props) {
@@ -19,6 +27,7 @@ class Menu extends React.Component {
 
         this.saveFeedback = this.saveFeedback.bind(this);
         this.buy = this.buy.bind(this);
+        this.buyButton = this.buyButton.bind(this);
         this.addMoney = this.addMoney.bind(this);
     }
 
@@ -26,6 +35,17 @@ class Menu extends React.Component {
         this.getItems();
         this.setMoney();
     }
+    
+    // For a setting for removing pop up
+    // changeNoPop = () => {
+    //     if (this.state.noPopUp == true) {
+    //       this.setState({ noPopUp: false });
+    //       this.setState({ isPopUp: "On" });
+    //     } else {
+    //       this.setState({ noPopUp: true });
+    //       this.setState({ isPopUp: "Off" });
+    //     }
+    // };
 
     setMoney() {
         this.setState({
@@ -58,7 +78,21 @@ class Menu extends React.Component {
         )
     }
 
-    buy(x) {
+    buy = item => {
+        console.log(item.name, item.id)
+        this.setState({ buying: item.name })
+        this.setState({currentBuyingId: item.id})
+        this.state.addModalClose = () => this.setState({ addModalShow: false });
+        this.setState({
+            addModalShow: true
+        });
+    }
+
+    buyButton() {
+        this.setState({
+            addModalShow: false
+        })
+        let x = this.state.currentBuyingId
         //First check if there isn't too much debt and there are still drinks
         if (this.state.itemList[x].inventory > 0 && this.state.money - this.state.itemList[x].price >= -20) {
             this.setState({
@@ -84,9 +118,9 @@ class Menu extends React.Component {
         }
     }
 
-    addMoneyToBackEnd = async (m) => {
+    addMoneyToBackEnd = async (moneys) => {
         const bodyData = {
-            userMoney: m
+            userMoney: moneys
         }
         await fetch (
             "http://localhost:3001/users/" + this.props.currentUser._id, {
@@ -120,6 +154,16 @@ class Menu extends React.Component {
                 </Link>
                 <h1 className="mt-5 title">Limsamaatti</h1>
                 <div className="menu">
+                <div>
+                    <ButtonToolbar>
+                        <AddDepModal
+                        show={this.state.addModalShow}
+                        onHide={this.state.addModalClose}
+                        buyButton={this.buyButton}
+                        buying={this.state.buying}
+                        />
+                    </ButtonToolbar>
+                </div>
                     <ItemList itemList={this.state.itemList}
                     buy={this.buy}/>
                     <div className="right-menu">

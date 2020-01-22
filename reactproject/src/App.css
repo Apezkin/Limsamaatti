@@ -110,7 +110,6 @@
 
 .saldo-button {
   height: 30px;
-  margin-left: 10%;
   border-radius: 10px;
   float: right;
   margin-right: 10%;
@@ -123,4 +122,22 @@
 
 .center {
   text-align: center;
+}
+
+.modal {
+  width: 500px;
+  height: 100px;
+  border-radius: 5px;
+  border-style: initial;
+  position: "absolute";
+  z-index: 4000;
+  padding: 10px;
+  margin-left: 40%;
+  margin-top: 15%;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
 }

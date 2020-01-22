@@ -64,7 +64,7 @@ function Login(props) {
                 </FormGroup>
 
                 <Link to="/menu">
-                    <Button block bssize="large" disabled={!validateForm()} style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} // type="submit"
+                    <Button block bssize="large" disabled={!validateForm()} style={{ backgroundColor: 'red', color: 'black', borderColor: 'red' }} type="submit" // type="submit"
                         onClick={handleLogin}>
                         Login
                     </Button>
