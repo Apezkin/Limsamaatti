@@ -179,3 +179,21 @@
   display: flex;
   flex-direction: column;
 }
+
+.admin-buttons {
+  height: 60px;
+  color: black;
+  background-color: rgb(255, 30, 30);
+  text-align: center;
+  font-weight: bold;
+  font-size: 120%;
+  margin-top: 10%;
+  border-radius: 10px;
+  border-width: thick;
+}
+
+.set-value {
+  font-size: 100%;
+  font-weight: 500;
+  margin-right: 5px;
+}

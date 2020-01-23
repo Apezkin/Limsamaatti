@@ -97,6 +97,8 @@ class AdminView extends React.Component {
         this.addMoneyToBackEnd(parseFloat(this.state.money) + parseFloat(x));
     }
 
+
+
     render() {
 
         return (
@@ -112,9 +114,9 @@ class AdminView extends React.Component {
                         <UserInfo user={this.props.currentUser.username} saldo={this.state.money}
                         addMoney={this.addMoney}/>
                         <div className="column">
-                            <button>Palautteet</button>
-                            <button>Käyttäjät</button>
-                            <button>Loki</button>
+                            <button className="admin-buttons" >Palautteet</button>
+                            <button className="admin-buttons">Käyttäjät</button>
+                            <button className="admin-buttons">Loki</button>
                         </div>
                     </div>
                 </div>
