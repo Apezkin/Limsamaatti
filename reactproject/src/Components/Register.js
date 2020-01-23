@@ -34,7 +34,6 @@ function Register(props) {
 
     function handleRegister() {
         if (password.length > 4) {
-            // console.log("Login success!");
             register();
             if (1) {console.log("true"); alert("Registeration successfull!") } else { alert("Registeration fail") }
         } else alert("Password is too short!")

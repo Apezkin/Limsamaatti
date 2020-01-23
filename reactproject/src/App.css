@@ -146,3 +146,8 @@
   text-align: center;
   vertical-align: middle;
 }
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
