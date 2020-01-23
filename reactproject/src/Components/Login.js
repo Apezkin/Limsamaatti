@@ -42,6 +42,7 @@ function Login(props) {
 
     return (
         <div className="Login">
+            <div><h1 className="mb-4 login_header" styles={{color: 'red'}}>Clusterin Limsamaatti</h1></div>
             <h1>{props.wow}</h1>
             <form onSubmit={handleSubmit}>
                 <FormGroup controlId="username" bssize="large">
@@ -78,7 +79,7 @@ function Login(props) {
                     </Button>
                 </Link>
                 <div>
-                    <img src={logo} className="mt-4 App-logo" alt="logo" /*styles={{ position: 'absolute', right: '20%' }}*/ />
+                    <img src={logo} className="meidan_logo" alt="logo" /*styles={{ position: 'absolute', right: '20%' }}*/ />
                 </div>
             </form>
 
