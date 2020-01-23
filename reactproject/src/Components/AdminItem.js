@@ -54,11 +54,13 @@ class AdminItem extends React.Component {
                     <div className="center">
                         <h4>Price</h4>
                         <h4 className="title">{this.props.price}€</h4>
+                        <label className="set-value">Set value:</label>
                         <input className="item-newinfo" name="price" onChange={this.setNewPrice}></input>
                     </div>
                     <div className="center">
                         <h4>Inventory</h4>
                         <h4 className="title">{this.props.inventory}</h4>
+                        <label className="set-value">Set value:</label>
                         <input className="item-newinfo" name="inv" onChange={this.setNewInv}></input>
                     </div>
                     <button className="buy-button" type="submit">Save</button>
