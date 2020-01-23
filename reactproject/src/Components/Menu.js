@@ -1,7 +1,7 @@
 import React from 'react';
 import ItemList from "./ItemList"
 import UserInfo from "./UserInfo"
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import AddDepModal from "./AddDepModal";
 import { ButtonToolbar } from "react-bootstrap"
@@ -35,7 +35,7 @@ class Menu extends React.Component {
         this.getItems();
         this.setMoney();
     }
-    
+
     // For a setting for removing pop up
     // changeNoPop = () => {
     //     if (this.state.noPopUp == true) {
@@ -81,7 +81,7 @@ class Menu extends React.Component {
     buy = item => {
         console.log(item.name, item.id)
         this.setState({ buying: item.name })
-        this.setState({currentBuyingId: item.id})
+        this.setState({ currentBuyingId: item.id })
         this.state.addModalClose = () => this.setState({ addModalShow: false });
         this.setState({
             addModalShow: true
@@ -154,16 +154,16 @@ class Menu extends React.Component {
                 </Link>
                 <h1 className="mt-5 title">Limsamaatti</h1>
                 <div className="menu">
-                <div>
-                    <ButtonToolbar>
-                        <AddDepModal
-                        show={this.state.addModalShow}
-                        onHide={this.state.addModalClose}
-                        buyButton={this.buyButton}
-                        buying={this.state.buying}
-                        />
-                    </ButtonToolbar>
-                </div>
+                    <div>
+                        <ButtonToolbar>
+                            <AddDepModal
+                                show={this.state.addModalShow}
+                                onHide={this.state.addModalClose}
+                                buyButton={this.buyButton}
+                                buying={this.state.buying}
+                            />
+                        </ButtonToolbar>
+                    </div>
                     <ItemList itemList={this.state.itemList}
                         buy={this.buy} />
                     <div className="right-menu">
@@ -174,7 +174,7 @@ class Menu extends React.Component {
                                 <form onSubmit={this.saveFeedback}>
                                     <h3>Feedback</h3>
                                     <textarea className="feedback-field" name="feedbackField" maxLength="200" rows="5" cols="35"></textarea>
-                                    <button type="submit">Save</button>
+                                    <button className="buy-button" type="submit">Save</button>
                                 </form>
                             </div>
                         </div>
