@@ -18,7 +18,15 @@ class AddDepModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="container">Are you sure?</div>
+          <div className="container">
+            {this.props.confirmation ?
+            "Are you sure?"
+            :
+            this.props.success ?
+            "Success!"
+            :
+            "Failed! Check inventory or funds"}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -26,7 +34,7 @@ class AddDepModal extends Component {
             onClick={(this.props.buyButton)}
             align="center"
           >
-            confirm
+            Confirm
           </Button>
           <Button variant="danger" onClick={this.props.onHide} align="center">
             Back
