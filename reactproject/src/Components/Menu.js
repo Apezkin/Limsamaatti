@@ -16,6 +16,10 @@ class Menu extends React.Component {
         currentBuyingId: "",
         isPopUp: "Off",
         noPopUp: true,
+        count: 0,
+        success: null,
+        feedback: false,
+        confirmation: true
     }
 
 
@@ -29,6 +33,7 @@ class Menu extends React.Component {
         this.buy = this.buy.bind(this);
         this.buyButton = this.buyButton.bind(this);
         this.addMoney = this.addMoney.bind(this);
+        this.counter = this.counter.bind(this);
     }
 
     componentDidMount() {
@@ -88,9 +93,6 @@ class Menu extends React.Component {
     }
 
     buyButton() {
-        this.setState({
-            addModalShow: false
-        })
         let x = this.state.currentBuyingId
         //First check if there isn't too much debt and there are still drinks
         if (this.state.itemList[x].inventory > 0 && this.state.money - this.state.itemList[x].price >= -20) {
@@ -114,6 +116,22 @@ class Menu extends React.Component {
                 //Update itemList with newLists items
                 itemList: newList
             })
+            //alert("Successful")
+            this.startTimer();
+            this.setState({
+                confirmation: false,
+                success: true
+            })
+            
+        } else {
+            //alert("Failed")
+            this.startTimer();
+            this.setState({
+                confirmation: false,
+                success: false
+            })
+            
+            
         }
     }
 
@@ -142,6 +160,33 @@ class Menu extends React.Component {
         event.preventDefault();
 
         event.target.feedbackField.value = ""
+        this.setState({
+            feedback: true
+        })
+        this.startTimer();
+    }
+
+    startTimer() {
+        this.setState({
+            count: 2
+        })
+
+        this.timer = setInterval(this.counter, 1000);
+    }
+
+    counter() {
+        if (this.state.count === 0) {
+            clearInterval(this.timer)
+            this.setState({
+                addModalShow: false,
+                feedback: false,
+                confirmation: true
+            })
+        } else {
+            this.setState({
+                count: this.state.count - 1
+            })
+        }
     }
 
     render() {
@@ -160,6 +205,9 @@ class Menu extends React.Component {
                                 onHide={this.state.addModalClose}
                                 buyButton={this.buyButton}
                                 buying={this.state.buying}
+                                count={this.state.count}
+                                success={this.state.success}
+                                confirmation={this.state.confirmation}
                             />
                         </ButtonToolbar>
                     </div>
@@ -171,7 +219,7 @@ class Menu extends React.Component {
                         <div className="feedback">
                             <div className="red-bg">
                                 <form onSubmit={this.saveFeedback}>
-                                    <h3>Feedback</h3>
+                                    <h3>{this.state.feedback === false ? "Feedback" : "Feedback - Received!"}</h3>
                                     <textarea className="feedback-field" name="feedbackField" maxLength="200" rows="5" cols="35"></textarea>
                                     <button className="buy-button" type="submit">Save</button>
                                 </form>
