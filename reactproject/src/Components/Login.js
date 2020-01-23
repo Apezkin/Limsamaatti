@@ -31,7 +31,6 @@ function Login(props) {
         }
         );
         jsonData = await data.json();
-        console.log(jsonData);
         if (jsonData === "fail") {
             console.log("fail");
         } else {

@@ -111,6 +111,11 @@ class AdminView extends React.Component {
                     <div className="right-menu">
                         <UserInfo user={this.props.currentUser.username} saldo={this.state.money}
                         addMoney={this.addMoney}/>
+                        <div className="column">
+                            <button>Palautteet</button>
+                            <button>Käyttäjät</button>
+                            <button>Loki</button>
+                        </div>
                     </div>
                 </div>
             </div>

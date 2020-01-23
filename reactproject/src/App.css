@@ -167,10 +167,15 @@
   margin-top: 10%;
 
 }
+
 .login_header {
   text-align: center;
   color: red;
   font-weight: bold;
   font-size: 300%;
+}
 
+.column {
+  display: flex;
+  flex-direction: column;
 }
